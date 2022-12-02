@@ -30,6 +30,7 @@ public class App {
         if (c2 == 'Z'){
             t[1] = 3;
         }
+        
         return t;
     }
 
@@ -40,29 +41,106 @@ public class App {
     * 3 if the round was a draw,
     * and 6 if you won
  */
-    public static void main(String[] args) throws IOException {
-        String fileName = "src/main/resources/test0.txt";
-File file = new File(fileName);
-FileReader fr = new FileReader(file);
-try (BufferedReader br = new BufferedReader(fr)) {
-    String line;
+public static void p1() throws IOException{
+    String fileName = "src/main/resources/test.txt";
+    File file = new File(fileName);
+    FileReader fr = new FileReader(file);
     long scores = 0 ;
-    while((line = br.readLine()) != null){
-        int []t = conv(line.charAt(0), line.charAt(2));
-        
-        if (t[0] == t[1]){
-            scores+= 3 + t[1];
-        }
-        else if (t[0] > t[1]){
-            scores+=t[1];
-        }
-        else if (t[0] < t[1]){
-            scores+= 6 + t[1];
-        }
-        System.out.println(t[0] + " - " + t[1]);
     
+    try (BufferedReader br = new BufferedReader(fr)) {
+        String line;
+        while((line = br.readLine()) != null){
+            int []t = conv(line.charAt(0), line.charAt(2));
+            int manche = 0;
+            if (t[0] == t[1]){
+                manche= 3 ;
+            }
+            else if ((t[0] == 1 &&  t[1] == 2) ||
+                    (t[0] == 2 &&  t[1] == 3)||
+                    (t[0] == 3 &&  t[1] == 1)){
+                        manche = 6 ;
+                    }
+    
+           scores += manche + t[1];
+         
+        }
+        System.out.println(scores);
     }
-    System.out.println(scores);
 }
+
+/*
+ *  X means you need to lose, 
+ * Y means you need to end the round in a draw, 
+ * and Z means you need to win. Good luck!"
+ */
+public static int[] conv2(char c1 , char c2){
+    int []t = new int[2];
+    if (c1 == 'A' ){
+        t[0] = 1;
+    }
+    if (c1 == 'B'){
+        t[0] = 2;
+    }
+    if (c1 == 'C'){
+        t[0] = 3;
+    }
+    if (c2 == 'X'){
+        t[1] = 0;
+    }
+    if (c2 == 'Y'){
+        t[1] = 3;
+    }
+    if (c2 == 'Z'){
+        t[1] = 6;
+    }
+    
+    return t;
+}
+
+public static void p2() throws IOException{
+    String fileName = "src/main/resources/test.txt";
+    File file = new File(fileName);
+    FileReader fr = new FileReader(file);
+    long scores = 0 ;
+    
+    try (BufferedReader br = new BufferedReader(fr)) {
+        String line;
+        while((line = br.readLine()) != null){
+            int []t = conv2(line.charAt(0), line.charAt(2));
+            int complementaire = 0 ;
+            if (t[1] == 3) {
+                complementaire = t[0];
+            }
+            else if (t[1] == 0){
+                if (t[0] == 1){
+                    complementaire = 3;
+                }
+                if(t[0] == 2){
+                    complementaire = 1;
+                }
+                if(t[0] == 3){
+                    complementaire = 2;
+                }
+            }
+            else if (t[1] == 6){
+                if (t[0] == 1){
+                    complementaire = 2;
+                }
+                if(t[0] == 2){
+                    complementaire = 3;
+                }
+                if(t[0] == 3){
+                    complementaire = 1;
+                }
+
+            }
+            scores+=t[1]+complementaire;
+        }
+        System.out.println(scores);
+    }
+}
+
+    public static void main(String[] args) throws IOException {
+      p2();
     }
 }
