@@ -13,6 +13,13 @@ public class App {
     public static int score(int[]t1 , int[]t2){
        int s = 0 ;
         // si t1[i] est dans t2 => s = s + t1
+        for (int i = 0 ; i < t2.length ; i++){
+            for (int j = 0 ; j <t2.length ; j++){
+                if (t1[i] == t2[j]){
+                    s=t1[i];
+                }
+            }
+        }
         return s;
     }
 
@@ -55,6 +62,7 @@ public static void p1() throws IOException{
 
             }
 
+            System.out.println(scores);
            
         scores+=score(t1,t2);
          
