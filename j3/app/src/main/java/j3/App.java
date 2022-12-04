@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class App {
 
@@ -71,7 +72,87 @@ public static void p1() throws IOException{
     }
 }
 
+
+public static int score(ArrayList<int[]> l){
+    int s = 0 ;
+    int []t1 = l.get(0);
+    int []t2 = l.get(1);
+    int []t3 = l.get(2);
+    // si t1[i] est dans t2 => s = s + t1
+     for (int i = 0 ; i < t1.length ; i++){
+         for (int j = 0 ; j <t2.length ; j++){
+             for(int k = 0 ; k < t3.length ; k++) {
+                 if ((t1[i] == t2[j]) && (t3[k] == t2[j])){
+                     s=t1[i];
+                 }    
+             }
+             
+         }
+     }
+     return s;
+ }
+
+
+public static void p2() throws IOException{
+ String fileName = "src/main/resources/test.txt";
+ File file = new File(fileName);
+ FileReader fr = new FileReader(file);
+ long scores = 0 ;
+ int cpt = 0;    
+ ArrayList<int[]> l = new ArrayList<int[]>();
+ try (BufferedReader br = new BufferedReader(fr)) {
+     String line;
+     while((line = br.readLine()) != null){
+         if (cpt%3 == 0 && cpt !=0) {
+             scores+=score(l);
+             System.out.println(score(l));
+
+             int n = line.length();        
+             // A -> Z : 65 -> 90 ;  aoc 27 - 52
+             // a -> z : 97 -> 122; aoc 1 - 26
+
+             int [] t1 = new int[n];
+
+             for (int i = 0 ; i < n;i++){
+                 if(Character.isUpperCase( line.charAt(i))){
+                     t1[i] =  (int)line.charAt(i) - 38 ;
+                 }
+                 if(Character.isLowerCase( line.charAt(i))){
+                     t1[i] = (int)line.charAt(i)  - 96;
+                 }
+             }
+             l.clear();
+
+             l.add(t1);
+             cpt++;
+             System.out.println("-----");
+
+         }
+         else {        
+             int n = line.length();        
+             // A -> Z : 65 -> 90 ;  aoc 27 - 52
+             // a -> z : 97 -> 122; aoc 1 - 26
+
+             int [] t1 = new int[n];
+
+             for (int i = 0 ; i < n;i++){
+                 if(Character.isUpperCase( line.charAt(i))){
+                     t1[i] =  (int)line.charAt(i) - 38 ;
+                 }
+                 if(Character.isLowerCase( line.charAt(i))){
+                     t1[i] = (int)line.charAt(i)  - 96;
+                 }
+             }
+             l.add(t1);                
+            
+         cpt++;
+         }
+     }
+     System.out.println(scores);
+ }
+}
+
     public static void main(String[] args) throws IOException {
-      p1();
+      p2();
     }
 }
