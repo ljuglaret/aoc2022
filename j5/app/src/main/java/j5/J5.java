@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 public class J5 {
-    
-    public  void j5P1(String fileName) throws IOException {
+
+    public ArrayList<Stack<String>>  init (){
+        ArrayList<Stack<String>> l = new ArrayList<Stack<String>>();
         Stack<String> s1 = new Stack<String> ();
         Stack<String> s2 = new Stack<String> ();
         Stack<String> s3 = new Stack<String> ();
@@ -34,9 +35,16 @@ public class J5 {
         s7.addAll(new ArrayList<>(Arrays.asList(("T J P B W").split(" "))));
         s8.addAll(new ArrayList<>(Arrays.asList(("G D C Z F T Q M").split(" "))));
         s9.addAll(new ArrayList<>(Arrays.asList(("N S H B P F").split(" "))));
-      ArrayList<Stack<String>> l = new ArrayList<Stack<String>>();
-      l.addAll(new ArrayList<>(Arrays.asList(s1,s2,s3,s4,s5,s6,s7,s8,s9)));
-      
+
+        l.addAll(new ArrayList<>(Arrays.asList(s1,s2,s3,s4,s5,s6,s7,s8,s9)));
+
+        return l;
+
+    }
+    
+    public  void j5P1(String fileName) throws IOException {
+        init();
+      ArrayList<Stack<String>> l = init();
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
         try (BufferedReader br = new BufferedReader(fr)) {
@@ -49,6 +57,34 @@ public class J5 {
                 for (int i = 0 ; i < t[0];i++){
                     l.get(t[2]-1).push( l.get(t[1]-1).pop());
                 }
+            }
+            }
+            for (int i = 0 ; i < 9 ; i++){
+                System.out.println(l.get(i).peek());
+            }
+    }
+
+    public  void j5P2(String fileName) throws IOException {
+        init();
+      ArrayList<Stack<String>> l = init();
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+        try (BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while((line = br.readLine()) != null){
+                int[]t = new int[3];
+                t[0] = Integer.parseInt(line.split(" ")[1]);
+                t[1] = Integer.parseInt(line.split(" ")[3]);
+                t[2] = Integer.parseInt(line.split(" ")[5]);
+                ArrayList<String>temp = new ArrayList<>();
+               
+                for (int i = 0 ; i < t[0];i++){
+                    temp.add( l.get(t[1]-1).pop());
+                }
+                for (int i = t[0] - 1 ; i >=0 ;i--){
+                    l.get(t[2]-1).push( temp.get(i));
+                }
+               
             }
             }
             for (int i = 0 ; i < 9 ; i++){
