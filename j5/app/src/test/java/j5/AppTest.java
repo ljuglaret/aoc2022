@@ -6,8 +6,16 @@ package j5;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
+    J5 testJ5 = new J5();
+    @Test void p1() throws IOException {
+        assertEquals("CMZ", testJ5.j5P1(testJ5.initTest(),"src/test/resources/TestInstructions.txt"));
+    
+    }
+    @Test void p2() throws IOException {
+        assertEquals("MCD", testJ5.j5P2(testJ5.initTest(),"src/test/resources/TestInstructions.txt"));
+    
     }
 }

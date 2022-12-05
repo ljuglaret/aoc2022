@@ -9,6 +9,21 @@ import java.util.Arrays;
 import java.util.Stack;
 public class J5 {
 
+
+    public ArrayList<Stack<String>>  initTest (){
+        ArrayList<Stack<String>> l = new ArrayList<Stack<String>>();
+        Stack<String> s1 = new Stack<String> ();
+        Stack<String> s2 = new Stack<String> ();
+        Stack<String> s3 = new Stack<String> ();
+        s1.addAll(new ArrayList<>(Arrays.asList(("Z N").split(" "))));
+        s2.addAll(new ArrayList<>(Arrays.asList(("M C D").split(" "))));
+        s3.addAll(new ArrayList<>(Arrays.asList(("P").split(" "))));
+        l.addAll(new ArrayList<>(Arrays.asList(s1,s2,s3)));
+        return l;
+
+    }
+    
+
     public ArrayList<Stack<String>>  init (){
         ArrayList<Stack<String>> l = new ArrayList<Stack<String>>();
         Stack<String> s1 = new Stack<String> ();
@@ -42,9 +57,8 @@ public class J5 {
 
     }
     
-    public  void j5P1(String fileName) throws IOException {
-        init();
-      ArrayList<Stack<String>> l = init();
+    public  String j5P1(ArrayList<Stack<String>> l,String fileName) throws IOException {
+       
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
         try (BufferedReader br = new BufferedReader(fr)) {
@@ -59,14 +73,16 @@ public class J5 {
                 }
             }
             }
-            for (int i = 0 ; i < 9 ; i++){
+            String res = "";
+            for (int i = 0 ; i < l.size() ; i++){
+                res+=l.get(i).peek();
                 System.out.println(l.get(i).peek());
             }
+            return res;
     }
 
-    public  void j5P2(String fileName) throws IOException {
-        init();
-      ArrayList<Stack<String>> l = init();
+    public  String j5P2(ArrayList<Stack<String>> l,String fileName) throws IOException {
+
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
         try (BufferedReader br = new BufferedReader(fr)) {
@@ -87,8 +103,11 @@ public class J5 {
                
             }
             }
-            for (int i = 0 ; i < 9 ; i++){
+            String res = "";
+            for (int i = 0 ; i < l.size() ; i++){
+                res+=l.get(i).peek();
                 System.out.println(l.get(i).peek());
             }
+            return res;
     }
 }

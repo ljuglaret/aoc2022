@@ -10,8 +10,9 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         J5 j5 = new J5();
-       // j5.j5P1("src/main/resources/instructions.txt");
-       j5.j5P2("src/main/resources/instructions.txt");
+        j5.j5P1(j5.init(),"src/main/resources/instructions.txt");
+        System.out.println("-------------");
+       j5.j5P2(j5.init(),"src/main/resources/instructions.txt");
 
     }
 }
