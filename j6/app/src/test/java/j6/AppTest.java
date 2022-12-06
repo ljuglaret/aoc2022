@@ -12,19 +12,37 @@ class AppTest {
    
 
     @Test void testp12() {
-        assertEquals(5, j6.p1("bvwbjplbgvbhsrlpgdmjqwftvncz"));
+        assertEquals(5, j6.p1("bvwbjplbgvbhsrlpgdmjqwftvncz",4));
      }
 
      @Test void testp13() {
-        assertEquals(6, j6.p1("nppdvjthqldpwncqszvftbrmjlhg"));
+        assertEquals(6, j6.p1("nppdvjthqldpwncqszvftbrmjlhg",4));
      }
 
 
     @Test void testp14() {
-        assertEquals(10, j6.p1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"));
+        assertEquals(10, j6.p1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",4));
      }
      
      @Test void testp15() {
-        assertEquals(11, j6.p1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"));
+        assertEquals(11, j6.p1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw",4));
+     }
+
+     @Test void testp21() {
+        assertEquals(19, j6.p1("mjqjpqmgbljsphdztnvjfqwrcgsmlb",14));
+     }
+
+     
+     @Test void testp22() {
+        assertEquals(23, j6.p1("nppdvjthqldpwncqszvftbrmjlhg",14));
+     }
+
+
+    @Test void testp23() {
+        assertEquals(29, j6.p1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",14));
+     }
+     
+     @Test void testp24() {
+        assertEquals(26, j6.p1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw",14));
      }
 }

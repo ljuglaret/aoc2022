@@ -29,11 +29,11 @@ public class J6 {
     }
     return true;
   }
-  public  int p1(String str){
+  public  int p1(String str,int lg){
     int i = 0 ;
     boolean trouve = false;
     while(!trouve){
-      String sschaine = str.substring(i,i+4);
+      String sschaine = str.substring(i,i+lg);
       if(!toutDifferent(sschaine)){
         i++;
 
@@ -42,7 +42,7 @@ public class J6 {
         trouve = true;
       }
     }
-    return i+4;
+    return i+lg;
   }
     
 }
