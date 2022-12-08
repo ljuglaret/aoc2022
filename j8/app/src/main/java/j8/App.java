@@ -10,6 +10,6 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         J8 j8 = new J8();
-        System.out.println(j8.p1(j8.lecture("src/main/resources/j8.txt")));
+        System.out.println(j8.p2(j8.lecture("src/main/resources/j8.txt")));
     }
 }

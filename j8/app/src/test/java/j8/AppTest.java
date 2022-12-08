@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 class AppTest {
-    @Test void appHasAGreeting() throws IOException {
+    @Test void tests() throws IOException {
         J8 j8 = new J8();
        assertEquals(21, j8.p1(j8.lecture("src/test/resources/test.txt")));
+       assertEquals(8, j8.p2(j8.lecture("src/test/resources/test.txt")));
+
     }
 }

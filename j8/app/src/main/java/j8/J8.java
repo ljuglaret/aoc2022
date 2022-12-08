@@ -8,7 +8,7 @@ public class J8 {
     public List<Integer> parse (String s){
         ArrayList<Integer> l = new ArrayList<>();
         for (int i = 0 ; i < s.length() ; i++){
-            l.add(Integer.valueOf(s.charAt(i)));
+            l.add(Integer.valueOf(s.charAt(i)) - 48 );
         }
         return l;
     }
@@ -37,9 +37,11 @@ public class J8 {
 
    public List<Integer> voisinsGauche(int i,int j, ArrayList<List<Integer>> l){
     List<Integer> vg = new ArrayList<>();
-    for(int j1 = 0 ; j1<j ;j1++ ){
+    for(int j1 = 0 ; j1<j  ;j1++ ){
         vg.add(l.get(i).get(j1));
     }
+    Collections.reverse(vg);
+   
     return vg;
    }
     
@@ -56,6 +58,7 @@ public class J8 {
     for(int i1 = 0 ; i1<i;i1++ ){
         vh.add(l.get(i1).get(j));
     }
+    Collections.reverse(vh);
     return vh;
    }
 
@@ -88,6 +91,60 @@ public class J8 {
         }
     }
     return cpt + compteEltBords(l);
+   }
+
+   public int scoreScenique (int i,int j ,  ArrayList<List<Integer>> l){
+
+    int nbVoisinsPlusPetitsAGauche = 0;
+    int nbVoisinsPlusPetitsADroite = 0;
+    int nbVoisinsPlusPetitsEnHaut = 0;
+    int nbVoisinsPlusPetitsEnBas = 0;
+
+    int x = l.get(i).get(j);
+    for (int vb : voisinsBas(i,j, l)){
+        if(vb < x){
+            nbVoisinsPlusPetitsEnBas++;
+        }
+        else {nbVoisinsPlusPetitsEnBas++;break;}
+
+    }
+
+    for (int vb : voisinsHaut(i,j, l)){
+        if(vb < x){
+            nbVoisinsPlusPetitsEnHaut++;
+        }
+        else {nbVoisinsPlusPetitsEnHaut++;break;}
+
+    }
+
+    for (int vb : voisinsGauche(i,j, l)){
+        if(vb < x){
+            nbVoisinsPlusPetitsAGauche++;
+        }
+        else {nbVoisinsPlusPetitsAGauche++;break;}
+
+    }
+
+    for (int vb : voisinsDroite( i,j, l)){
+        if(vb < x){
+            nbVoisinsPlusPetitsADroite++;
+        }
+        else {nbVoisinsPlusPetitsADroite++;break;}
+    }
+    return 
+        nbVoisinsPlusPetitsADroite*nbVoisinsPlusPetitsAGauche*nbVoisinsPlusPetitsEnBas*nbVoisinsPlusPetitsEnHaut;
+   }
+   public int p2(ArrayList<List<Integer>> l){
+    int scoreMax = 0 ;
+  for(int i = 1 ; i < l.size() - 1 ; i ++){
+        for(int j = 1 ; j<l.get(i).size() -1 ; j++){
+        int sc = scoreScenique(i,j, l);
+        if(sc > scoreMax){
+            scoreMax = sc;
+        } 
+    }
+   }
+    return scoreMax;
    }
 
 }
