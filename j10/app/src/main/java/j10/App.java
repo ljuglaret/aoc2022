@@ -9,7 +9,8 @@ public class App {
    
 
     public static void main(String[] args) throws IOException {
-        J10 j10 = new J10();        
-        System.out.println(  j10.p1(j10.lecture("src/main/resources/j10.txt")));
+        J10 j10 = new J10();     
+       // System.out.println(  j10.p1(j10.lecture("src/main/resources/j10.txt")));   
+      j10.p2("src/main/resources/j10.txt");
     }
 }
