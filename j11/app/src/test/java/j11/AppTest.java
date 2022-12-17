@@ -17,7 +17,7 @@ class AppTest {
  J11 j11 = new J11();
     @BeforeEach
      void f() throws IOException{
-       
+
         monkeys.addAll(j11.init("src/test/resources/test.txt"));
      }
     @Test void afterOneRound() throws IOException {
@@ -43,11 +43,10 @@ class AppTest {
             assertEquals(exceptedItems.get(i),l);
             i++;
         }
-      
+
     }
 
     @Test void after20Round() throws IOException {
-        
         for (Monkey m : j11.p1(monkeys,20)){
             items.add(m.getItems());
         }
@@ -62,6 +61,6 @@ class AppTest {
             assertEquals(exceptedItems.get(i),l);
             i++;
         }
-      
+
     }
 }

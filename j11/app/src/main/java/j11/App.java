@@ -17,9 +17,9 @@ public class App {
     public static void main(String[] args) throws IOException {
         J11 j11 = new J11();
     ArrayList<Monkey>monkeys = new ArrayList<>();
-  //  monkeys = j11.init("src/main/resources/j11.txt");
-  monkeys.addAll(j11.init("src/test/resources/test.txt"));
-  j11.p1(monkeys, 2);
+  monkeys = j11.init("src/main/resources/j11.txt");
+ //monkeys = (j11.init("src/test/resources/test.txt"));
+  j11.p1(monkeys, 21);
    
     
     }
@@ -28,4 +28,6 @@ public class App {
 //106 913
 //108 851
 //115 254
+//102 714
+//103 683
 //323-298-331-318-55-314-25-337-342-298-331-333-57-314-25-337-

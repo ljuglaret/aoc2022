@@ -94,54 +94,59 @@ Monkey 3 inspected items 105 times.
     public ArrayList<Monkey> p1( ArrayList<Monkey> l0, int round){
        int[] inspect = new int[l0.size()];
 
-       for (int n = 0 ; n < l0.size() ; n++){
-      inspect[n]=l0.get(n).getItems().size();
-          
-          
-      }
-       // ArrayList<Monkey> l1 = new ArrayList<>();
-        //l1.addAll(l0); 
-        
+       for (int i = 0 ; i  < l0.size() ; i++){
+       // inspect[i] = l0.get(i).getItems().size();
+       }
+       
         for (int i = 0 ; i <round  ;i++){
-           // System.out.print(inspect[0]+" ; "+inspect[1]+" ; "+inspect[2]+" ; "+inspect[3]+" ; "); 
-            //System.out.println();
            
+           
+
             for (int m =0 ; m < l0.size() ; m++){
+                inspect[m]+=l0.get(m).getItems().size();
                 Monkey currentMonkey = l0.get(m);
-               
-                     
+                    
                 ArrayList<Integer>items =currentMonkey.getItems();
-                for (int k = 0 ; k < items.size() ; k++){
+                Collections.reverse(items);
+               // Collections.reverse(items);
+               while(items.size()>0){
                    
-                    int item = items.get(k);
+                    int item = items.get(items.size()-1);
                     int newValue = (currentMonkey.setWorriedLevel(item))/3;
-                  
-                    if(currentMonkey.okTest(newValue) ){
-                        l0.get(currentMonkey.getMonkeyTrue()).addItemToMonkey(newValue);
-                        inspect[currentMonkey.getMonkeyTrue()]++;
-                        
+                    int idx = 0 ;
+                    if((int)newValue % currentMonkey.getTestDivisibleBy() == 0 ){
+                        idx = currentMonkey.getMonkeyTrue();
+                       
                     }
                     else{
-                        l0.get(currentMonkey.getMonkeyFalse()).addItemToMonkey(newValue);
-                        inspect[currentMonkey.getMonkeyFalse()]++;
+                        idx = currentMonkey.getMonkeyFalse();
                         
                     }   
+                    l0.get(idx).addItemToMonkey(newValue);
+                    
+                    currentMonkey.getItems().remove(items.size()-1);
                    
-                         
                 }
-             
-           
-                currentMonkey.getItems().removeAll(items);
             
+                System.out.print(i +" -"); List<Integer> list = new ArrayList<>();
+                for (int p = 0 ; p< inspect.length ; p++){
+                   
+                    list.add(inspect[p]);
+                }
+                Collections.sort(list);
+                Collections.reverse(list);
+                System.out.print(list + ":"+ list.get(0)*list.get(1) + " ");
+                 System.out.println(m);
+              // currentMonkey.getItems().removeAll(items);
+                
             }
-            for (int n = 0 ; n < l0.size() ; n++){
-                System.out.print(inspect[n]+"-");
-                 
-             } 
+           
+           
             
-             System.out.println();
+            //System.out.println(l0.get(1).getItems());   
+            // System.out.println();
         }
-       
+      
 return l0;        
        
     }
