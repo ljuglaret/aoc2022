@@ -19,7 +19,7 @@ public class App {
     ArrayList<Monkey>monkeys = new ArrayList<>();
   monkeys = j11.init("src/main/resources/j11.txt");
  //monkeys = (j11.init("src/test/resources/test.txt"));
-  j11.p1(monkeys, 21);
+  j11.p1(monkeys, 20);
    
     
     }
